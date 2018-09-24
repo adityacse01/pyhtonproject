@@ -1,10 +1,10 @@
-# Travis runs Python projects in a virtualenv.
-# Python and all dependencies installed in the virtualenv.
-
 language: python
 
 python:
-  - "3.6"
+  - "3.5"
+
+git:
+  depth: 3
 
 # Install dependencies
 install:
