@@ -8,6 +8,7 @@ class StatsTest(TestCase):
         self.assertEqual(2.0, variance([1,2,3,4,5]))
 
     def test_variance_borderline(self):
+        self.assertEqual(0.0, variance([0.0]))
         self.assertEqual(0.0, variance([99.999]))
 
     def test_variance_throws_exception(self):
