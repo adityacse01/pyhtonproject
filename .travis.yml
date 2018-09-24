@@ -1,0 +1,14 @@
+# Travis runs Python projects in a virtualenv.
+# Python and all dependencies installed in the virtualenv.
+
+language: python
+
+python:
+	- "3.6"
+
+# Install dependencies
+install:
+	- pip install -r requirements.txt
+
+# script to run tests. Can use make, e.g. "make test"
+script: make test
