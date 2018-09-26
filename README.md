@@ -6,13 +6,18 @@ Status of last [Travis CI build](https://travis-ci.com/jbrucker/demo-pyci):
 
 Demo project using Travis CI to build and test a Python project.
 
-[Travis-CI](https://travis-ci.com) is a continuous integration server for building, testing, and deploying software projects.  It works with many lanaguages and integrates easily with Github.
+This application has some simple Python code and test classes using `unittest` to test the code.  By convention, the test class files end in `_test.py`.
 
 ### Building the Application
 
-Python doesn't require compilation, so its pretty simple.
+[Travis-CI](https://travis-ci.com) is a continuous integration server for building, testing, and deploying software projects.  It works with many lanaguages and integrates easily with Github.
 
-Travis runs Python apps in a virtualenv.  Use `pip` to add any packages your project needs to the virtualenv, such as Django.  There are a few package managers available that work with `pip`, but the simplest way is to put your required packages in a file named `requirements.txt` and tell Travis to run:
+The Travis configuration information is in [.travis.yml](.travis.yml).
+Travis runs Python apps in a virtualenv. 
+If your project requires any packages (such as Django),
+use `pip` to add the required packages to the virtualenv.
+The simplest way to do this (automatically) is to list your required packages 
+in a file named `requirements.txt` and tell Travis to run:
 ```shell
 pip install -r requirements.txt
 ```
@@ -20,23 +25,36 @@ The Python official docs explain the format of a requirements.txt file.
 
 ### Test the Build
 
-This project uses the venerable (old) GNU Make to run tests, since it 
-is mentioned on Travis CI.  The command to run tests is simple:
+This project uses the Python `unittest` library for tests, which has an auto-discovery feature.  So we can run all tests using:
 ```shell
 cmd> python -m unittest discover -p "*_test.py"
 ```
-The only advantage of using a Makefile is that you don't have to escape wildcard characters and maybe quotes, which you need to do if you put the command directly in the `.travis.yml` file.
 
-To run the tests using Make:
-```shell
-cmd> make test
+Once you get the tests to work, add it to `.travis.yml` as the "script" to run:
+```yml
+# commands to run automatically, on separate lines
+script:
+  - python -m unittest discover -p "*_test.py"
+```
+
+Another way to "build" and test Python projects is the
+venerable GNU Make utility, which is available on Travis.  
+Make is very useful for more complex builds, 
+the way Ant is used to build Java projects.
+And makefiles are much human-readable than Ant build.xml files.
+
+This project includes a Makefile with a `test` target.
+So, in `.travis.yml` you could use:
+```yml
+script:
+  - make test
 ```
 
 ### Managing Dependencies
 
-If your Python project requires certain packages, since the packages and versions in `requirements.txt` and enable these lines in `.travis.yml`:
+If your Python project requires certain packages, specify the packages and versions in `requirements.txt` and enable these lines in `.travis.yml`:
 ```yml
-# command to install dependenceis
+# command to install dependencies
 install:
   - pip install -r requirements.txt
 ```
@@ -47,7 +65,7 @@ See links below for how to add Travis as an "Application" to your Github account
 
 The Travis-CI site lets you configure project-specific settings, such as what branch it should build, and what triggers a build.  You can add pull requests as a trigger.
 
-Then configure your Github project for Travis, such as adding a `.travis.yml` file.
+Then configure your Github project for Travis by adding a `.travis.yml` file.
 
 ------
 ### More Info
