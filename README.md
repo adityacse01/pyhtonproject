@@ -6,6 +6,15 @@ Status of last [Travis CI build](https://travis-ci.com/jbrucker/demo-pyci):
 
 Demo project using Travis CI to build and test a Python project.
 
+> If you want to test this project using Travis CI,
+> then you need to create your **own Github repo** for it.
+>
+> Therefore, **do not clone** this repo from Github.
+> Download it as a **ZIP file**, create your own repo, then
+> add Github as remote origin and push.
+
+> After that, give Travis access to your Github repo and trigger a build on Travis.
+
 This application has some simple Python code and test classes for unit tests.  By convention, the test class files end in `_test.py`.
 
 ### Building the Application
@@ -61,10 +70,6 @@ script:
 ### Enable Travis on Github
 
 See links below for how to add Travis as an "Application" to your Github account.  You do this from the Travis-ci.com web site. Don't use the older travis-ci.org site.  
-
-The Travis-CI site lets you configure project-specific settings, such as what branch it should build, and what triggers a build.  You can add pull requests as a trigger.
-
-Then configure your Github project for Travis by adding a `.travis.yml` file.
 
 ------
 ### More Info
