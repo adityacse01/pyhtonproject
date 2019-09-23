@@ -2,9 +2,9 @@ Continuous Integration Demo
 ============================
 
 Status of last [Travis CI build](https://travis-ci.com/jbrucker/demo-pyci):  
-[![Build Status](https://travis-ci.com/jbrucker/demo-pyci.svg?branch=master)](https://travis-ci.com/jbrucker/demo-ci)
+[![Build Status](https://travis-ci.com/jbrucker/demo-pyci.svg?branch=master)](https://travis-ci.com/jbrucker/demo-pyci)
 
-Demo project using Travis CI to build and test a Python project.
+This project demonstrates use of Travis CI to build and test a Python project.
 
 > If you want to test this project using Travis CI,
 > then you need to create your **own Github repo** for it.
@@ -13,7 +13,7 @@ Demo project using Travis CI to build and test a Python project.
 > Download it as a **ZIP file**, create your own repo, then
 > add Github as remote origin and push.
 
-> After that, give Travis access to your Github repo and trigger a build on Travis.
+> Then give Travis access to your Github repo and trigger a build on Travis.
 
 This application has some simple Python code and test classes for unit tests.  By convention, the test class files end in `_test.py`.
 
@@ -58,18 +58,33 @@ Once you get the tests to work, add it to `.travis.yml` as the "script" to run:
 script:
   - python -m unittest discover -p "*_test.py"
 ```
+You might also be able to run tests via `pytest` which Travis uses by default:
+```
+script:
+  - pytest
+```
 
 Another way to "build" and test Python projects is the
 venerable GNU Make, which is available on Travis.  
-If you want to use "make" in a project, then in `.travis.yml` write:
+If you want to use "make" in your project, then in `.travis.yml` write:
 ```
 script:
   - make test
 ```
+you must provide a Makefile with a `test` target that runs your tests.
+There's really no benefit to this for Python, except as practice using Make.
 
 ### Enable Travis on Github
 
-See links below for how to add Travis as an "Application" to your Github account.  You do this from the Travis-ci.com web site. Don't use the older travis-ci.org site.  
+See links below for how to add Travis as an "Application" to your Github account.  You do this from the Travis-ci.com web site. 
+
+After you grant Travis-CI access to your Github account, you can control which projects (repos) Travis has access to.  On Github:
+
+1. Open the Person Settings page (under you photo, choose Settings).
+2. Select Applications.
+3. Select Travis-CI.
+4. A screen is shown with options to either grant access to all repos or selected repos.
+
 
 ------
 ### More Info
