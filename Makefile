@@ -14,3 +14,4 @@ dumbtest: *_test.py
 
 clean:
 	rm *.pyc
+	rm -f __pycache__ src/__pycache__
