@@ -12,7 +12,7 @@ def variance(data):
     Returns:
         population variance of values in data list.
     Throws:
-        TypeError if the data parameter is empty or does not contain numbers
+        ValueError if the data parameter is empty.
 
     Examples: see README.md for examples
     """

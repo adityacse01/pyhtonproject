@@ -1,9 +1,8 @@
 language: python
 
-python:
-  - "3.5"
+python: "3.6"
 
-# don't clone more than necessary?
+# don't clone more than necessary.
 git:
   depth: 1
 
@@ -11,6 +10,6 @@ git:
 install:
   - pip install -r requirements.txt
 
-# script to run tests. Can use make, e.g. "make test"
+# script to run tests. Can also use make, e.g. "make test"
 script: 
   - python -m unittest discover -p "*_test.py"
