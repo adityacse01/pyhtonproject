@@ -1,17 +1,24 @@
-# The ancient unix build program.
+# Makefile for the ancient unix build program.
+# This is NOT needed for the demo CI project, but included
+# for anyone who wants to see what a Makefile looks like
+# and how it works.  You need the Make program to use this.
+#
+# Run:
+# make test  - run unit tests
+# make lint  - run code checker
+# make clean - remove python cache files
+
+# Set PYTHON to the name of your python command (python or python3)
+PYTHON=python3
 
 # Let Python unittest module find and run tests itself
 test:
-	python -m unittest discover -p "*_test.py"
+	$(PYTHON) -m unittest discover -p "*_test.py"
 
-# Manual way.  
-# This requires each *_test.py file to have a "main" that invokes unittest.
-dumbtest: *_test.py
-	for t in $?; do \
-		echo Running $$t; \
-		python $$t; \
-	done;
+# Run linter on code
+lint:
+	flake8 stats.py
 
+# This is the Linux command to remove a directory
 clean:
-	rm *.pyc
-	rm -f __pycache__ src/__pycache__
+	/bin/rm -rf  __pycache__ 
